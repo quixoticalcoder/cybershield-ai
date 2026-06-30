@@ -40,14 +40,31 @@ from app.database import (
 
 translator = Translator()
 
-sentiment_model = pipeline(
-    "sentiment-analysis"
-)
+sentiment_model = None
+emotion_model = None
 
-emotion_model = pipeline(
-    "text-classification",
-    model="j-hartmann/emotion-english-distilroberta-base"
-)
+
+def get_sentiment_model():
+    global sentiment_model
+
+    if sentiment_model is None:
+        sentiment_model = pipeline(
+            "sentiment-analysis"
+        )
+
+    return sentiment_model
+
+
+def get_emotion_model():
+    global emotion_model
+
+    if emotion_model is None:
+        emotion_model = pipeline(
+            "text-classification",
+            model="j-hartmann/emotion-english-distilroberta-base"
+        )
+
+    return emotion_model
 
 # ==========================================================
 # HELPERS
@@ -375,16 +392,12 @@ def analyze_text(
     # NLP MODELS
     # ------------------------------------------------------
 
-    sentiment = sentiment_model(
-
-        translated_text[:512]
-
+    sentiment = get_sentiment_model()(
+    translated_text[:512]
     )[0]
 
-    emotion = emotion_model(
-
-        translated_text[:512]
-
+    emotion = get_emotion_model()(
+    translated_text[:512]
     )[0]
 
     sentiment_label = sentiment["label"]

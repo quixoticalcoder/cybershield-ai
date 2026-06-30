@@ -4,12 +4,20 @@ from app.services.text_service import (
     analyze_text
 )
 
-
 # ==========================================================
-# LOAD WHISPER MODEL
+# LOAD WHISPER MODEL (Lazy Loading)
 # ==========================================================
 
-model = whisper.load_model("base")
+model = None
+
+
+def get_model():
+    global model
+
+    if model is None:
+        model = whisper.load_model("base")
+
+    return model
 
 
 # ==========================================================
@@ -20,7 +28,9 @@ def transcribe_audio(
     file_path: str
 ) -> str:
 
-    result = model.transcribe(
+    whisper_model = get_model()
+
+    result = whisper_model.transcribe(
         file_path
     )
 
@@ -28,7 +38,6 @@ def transcribe_audio(
         "text",
         ""
     ).strip()
-
 
 # ==========================================================
 # VOICE MODERATION
