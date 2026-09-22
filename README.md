@@ -4,7 +4,7 @@
 
 cybershield-ai pairs a Next.js chat interface with a FastAPI backend. The backend combines sentiment and emotion models, keyword/rule-based toxicity and context engines, recent conversation history, and optional Gemini review. An administrator interface displays reports, moderation evidence, analysis history, account warnings, and blocking controls.
 
-**Status:** development prototype. The API does not enforce authenticated sessions or administrator permissions, passwords are stored directly, and several moderation and upload paths require hardening. Use the implementation boundaries below when evaluating the project. There is no included demo video.
+**Status:** development prototype. The API does not enforce authenticated sessions or administrator permissions, passwords are stored directly, and several moderation and upload paths require hardening. Use the implementation boundaries below when evaluating the project.
 
 ## Contents
 
