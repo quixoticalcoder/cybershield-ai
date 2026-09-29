@@ -6,6 +6,11 @@ cybershield-ai pairs a Next.js chat interface with a FastAPI backend. The backen
 
 **Status:** development prototype. The API does not enforce authenticated sessions or administrator permissions, passwords are stored directly, and several moderation and upload paths require hardening. Use the implementation boundaries below when evaluating the project.
 
+
+## Watch demo video
+
+https://youtu.be/209lOzWqFpU?si=6I7pB9ueGTCgFlLO
+
 ## Contents
 
 - [Capabilities](#capabilities)
